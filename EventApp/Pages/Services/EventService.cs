@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,10 +29,21 @@ namespace EventApp.Pages.Services
 
             string queryString = "select * from Event";
 
-            using (SqlConnection connection )
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    EventAppLib.Model.Event h = ReadPerson(reader);
+                    events.Add(h);
+                }
             }
+
+            return events;
 
         }
 
@@ -43,6 +55,17 @@ namespace EventApp.Pages.Services
         public EventAppLib.Model.Event Modify(EventAppLib.Model.Event modifiedUserStory)
         {
             throw new NotImplementedException();
+        }
+
+        private EventAppLib.Model.Event ReadPerson(SqlDataReader reader)
+        {
+            EventAppLib.Model.Event h = new EventAppLib.Model.Event();
+
+            //h.Address = reader.GetString(2);
+            //h.Name = reader.GetString(1);
+            //h.RoomNumber = reader.GetInt32(0);
+
+            return h;
         }
     }
 }
