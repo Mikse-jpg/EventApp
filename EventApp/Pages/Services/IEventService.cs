@@ -8,7 +8,7 @@ namespace EventApp.Pages.Services
 {
     public interface IEventService
     {
-        public List<EventAppLib.Model.Event> GetAllEvents();
+        List<EventAppLib.Model.Event> GetAllEvents();
 
         public EventAppLib.Model.Event GetById(int id);
 

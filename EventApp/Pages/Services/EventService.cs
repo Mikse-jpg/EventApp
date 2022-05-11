@@ -8,10 +8,14 @@ namespace EventApp.Pages.Services
 {
     public class EventService : IEventService
     {
-        private List<EventAppLib.Model.Event> _events;
-
+        private List<EventAppLib.Model.Event> _event;
         private const string connectionString = @"Server=tcp:frederik-nissen-zealand-server.database.windows.net,1433;Initial Catalog=SecondSemesterProject;Persist Security Info=False;User ID=fred145aAdmin;Password=Fred145a!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
+        public EventService()
+        {
+            
+        }
+        
 
         public void Create(EventAppLib.Model.Event newEvent)
         {
@@ -49,7 +53,16 @@ namespace EventApp.Pages.Services
 
         public EventAppLib.Model.Event GetById(int id)
         {
-            throw new NotImplementedException();
+            foreach (EventAppLib.Model.Event eid in _event)
+            {
+                if (eid.Id == id)
+                {
+                    return eid;
+                }
+
+
+            }
+            return null;
         }
 
         public EventAppLib.Model.Event Modify(EventAppLib.Model.Event modifiedUserStory)
@@ -61,9 +74,10 @@ namespace EventApp.Pages.Services
         {
             EventAppLib.Model.Event h = new EventAppLib.Model.Event();
 
-            //h.Address = reader.GetString(2);
-            //h.Name = reader.GetString(1);
-            //h.RoomNumber = reader.GetInt32(0);
+            h.Id = reader.GetInt32(0);
+            h.Title = reader.GetString(1);
+            h.Description = reader.GetString(2);
+            
 
             return h;
         }
