@@ -6,11 +6,24 @@
 
 <body>
 
-<div class="container">
+<div class="container" align="center">
     
-    <h1 style="text-align: center">Login</h1>
+    <h1 style="text-align: center">Login</h1><br/>
     
     <div>
+        <form method="post">
+
+            <div class="form-group">
+                <label asp-for="UserName" for="brugernavn">Brugernavn</label>
+                <input type="text" id="brugernavn" name="Brugernavn"/><br/><br/>
+
+                <label asp-for="Password" for="password">Password</label>
+                <input type="text" id="adgangskode" name="Adgangskode"/><br/><br/>
+
+                <input type="submit" value="Submit"/>
+            </div>
+
+        </form>
 
     </div>
 

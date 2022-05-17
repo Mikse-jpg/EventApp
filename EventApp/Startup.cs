@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EventApp.Pages.Services;
+using EventAppLib.Model;
 
 namespace EventApp
 {
@@ -25,7 +26,11 @@ namespace EventApp
         {
             services.AddRazorPages();
 
-            services.AddSingleton<IEventService, EventService>();
+            services.AddSingleton<IService<Event>, EventService>();
+
+            services.AddSingleton<IService<User>, UserService>();
+
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +48,7 @@ namespace EventApp
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 

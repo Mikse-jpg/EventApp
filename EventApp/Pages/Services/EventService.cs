@@ -3,83 +3,105 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventAppLib.Model;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace EventApp.Pages.Services
 {
-    public class EventService : IEventService
+    public class EventService : IService<EventAppLib.Model.Event>
     {
-        private List<EventAppLib.Model.Event> _event;
-        private const string connectionString = @"Server=tcp:frederik-nissen-zealand-server.database.windows.net,1433;Initial Catalog=SecondSemesterProject;Persist Security Info=False;User ID=fred145aAdmin;Password=Fred145a!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private const string connectionString =
+            @"Server=tcp:frederik-nissen-zealand-server.database.windows.net,1433;Initial Catalog=SecondSemesterProject;Persist Security Info=False;User ID=fred145aAdmin;Password=Fred145a!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public EventService()
         {
-            
-        }
-        
 
-        public void Create(EventAppLib.Model.Event newEvent)
+        }
+
+        public EventAppLib.Model.Event Create(EventAppLib.Model.Event newEvent)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(int eventId)
+        public EventAppLib.Model.Event Delete(string txt)
         {
             throw new NotImplementedException();
         }
 
-        public List<EventAppLib.Model.Event> GetAllEvents()
+        public List<EventAppLib.Model.Event> GetAll()
         {
             List<EventAppLib.Model.Event> events = new List<EventAppLib.Model.Event>();
 
-            string queryString = "select * from Event";
+            string sql = "select * from Event";
 
+            //opret forbindelse til dB
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand(queryString, connection);
-                command.Connection.Open();
+                //åbner forbindelse
+                connection.Open();
 
-                SqlDataReader reader = command.ExecuteReader();
+                //opretter sql query
+                SqlCommand cmd = new SqlCommand(sql, connection);
 
+                //altid ved select
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                //læser alle rækker
                 while (reader.Read())
                 {
-                    EventAppLib.Model.Event h = ReadPerson(reader);
-                    events.Add(h);
+                    EventAppLib.Model.Event owner = ReadEvent(reader);
+                    events.Add(owner);
                 }
             }
 
             return events;
-
         }
 
         public EventAppLib.Model.Event GetById(int id)
         {
-            foreach (EventAppLib.Model.Event eid in _event)
+            string sql = "select * from Event where Id=@Id";
+
+            //opret forbindelse til dB
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                if (eid.Id == id)
+                //åbner forbindelse
+                connection.Open();
+
+                //opretter sql query
+                SqlCommand cmd = new SqlCommand(sql, connection);
+
+                //indsæt værdierne
+                cmd.Parameters.AddWithValue("@Id", id);
+
+                //altid ved select
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                //læser alle rækker
+                while (reader.Read())
                 {
-                    return eid;
+                    EventAppLib.Model.Event owner = ReadEvent(reader);
+                    return owner;
                 }
-
-
             }
+
             return null;
+
         }
 
-        public EventAppLib.Model.Event Modify(EventAppLib.Model.Event modifiedUserStory)
+        public EventAppLib.Model.Event Modify(EventAppLib.Model.Event modifiedUserStory, string txt)
         {
             throw new NotImplementedException();
         }
 
-        private EventAppLib.Model.Event ReadPerson(SqlDataReader reader)
+        private EventAppLib.Model.Event ReadEvent(SqlDataReader reader)
         {
-            EventAppLib.Model.Event h = new EventAppLib.Model.Event();
+            EventAppLib.Model.Event owner = new EventAppLib.Model.Event();
 
-            h.Id = reader.GetInt32(0);
-            h.Title = reader.GetString(1);
-            h.Description = reader.GetString(2);
-            
+            owner.Id = reader.GetInt32(0);
+            owner.Title = reader.GetString(1);
+            owner.Description = reader.GetString(2);
 
-            return h;
+            return owner;
         }
     }
 }

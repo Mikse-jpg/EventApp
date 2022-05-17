@@ -9,14 +9,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EventApp.Pages.Event
 {
-    public class EnlistModel : PageModel
+    public class EventDetailedModel : PageModel
     {
         private IService<EventAppLib.Model.Event> _eventService;
+        
 
-        public EnlistModel(IService<EventAppLib.Model.Event> eventService)
+        public EventDetailedModel(IService<EventAppLib.Model.Event> eventService)
         {
             _eventService = eventService;
-
+            
         }
 
         [BindProperty]
@@ -29,6 +30,7 @@ namespace EventApp.Pages.Event
         public void OnGet(int id)
         {
             Event = _eventService.GetById(id);
+            
         }
     }
 }
