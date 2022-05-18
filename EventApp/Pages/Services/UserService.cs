@@ -19,7 +19,7 @@ namespace EventApp.Pages.Services
             
         }
 
-        public User Create(User newEvent)
+        public User Create(User newUser)
         {
             throw new NotImplementedException();
         }
@@ -69,24 +69,6 @@ namespace EventApp.Pages.Services
             throw new NotImplementedException();
         }
 
-        public bool Contains(User user)
-        {
-            return _users.Contains(user);
-        }
-
-        public RoleType ContainsAndGiveRole(User user)
-        {
-            if (!Contains(user))
-            {
-                user.Role = RoleType.Guest;
-            }
-            else
-            {
-                user.Role = user.UserName.Equals("Frederik") ? RoleType.Admin : RoleType.Guest;
-            }
-
-            return user.Role;
-        }
 
         private User ReadPerson(SqlDataReader reader)
         {

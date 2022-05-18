@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventAppLib.Model;
 
 namespace EventApp.Pages.Services
 {
     public interface IService<T>
     {
+
         List<T> GetAll();
 
         T GetById(int id);

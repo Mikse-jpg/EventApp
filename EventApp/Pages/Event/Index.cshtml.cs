@@ -12,21 +12,21 @@ namespace EventApp.Pages.Event
     public class IndexModel : PageModel
     {
         private IService<EventAppLib.Model.Event> _events;
-        private IService<User> _users;
+        // private IService<User> _users;
 
-        public IndexModel(IService<EventAppLib.Model.Event> events, IService<User> users)
+        public IndexModel(IService<EventAppLib.Model.Event> events /*IService<User> users*/)
         {
             _events = events;
-            _users = users;
+            // _users = users;
         }
         public void OnGet(int id)
         {
             Events = _events.GetAll();
-            Users = _users.GetAll();
+            // Users = _users.GetAll();
         }
 
         public List<EventAppLib.Model.Event> Events { get; set; }
 
-        public List<User> Users { get; set; }
+        // public List<User> Users { get; set; }
     }
 }

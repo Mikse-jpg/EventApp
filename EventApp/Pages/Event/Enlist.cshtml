@@ -1,18 +1,110 @@
 ﻿@page "{id:int}"
+@using System.Reflection.Metadata
 @model EventApp.Pages.Event.EnlistModel
 @{
     ViewData["Title"] = "Enlist";
 }
 
 <body>
-    <div class="container">
-        
-        
-        
+
+<div class="container" style="text-align: -webkit-center">
+    <div class="card mb-2" style="width: 30rem">
+        <div class="card-header p-2">
+            <h5 class="card-title">
+                (@Model.Event.Id) - @Model.Event.Title - Enlist for event?
+            </h5>
+        </div>
+
+        <div class="card-body" style="display: flex; justify-content: center">
+            <p class="card-text">
+                @Model.Event.Description
+            </p>
+        </div>
+
+        <div class="card-footer" style="display: flex; justify-content: center">
+                
+            <form method="post">
+
+                <label>Number om reservations:</label> <br />
+                <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                </select>
+
+                <label>EXTRA OPTIONS:</label> <br />
+                <label>Do you wish to buy VIP?</label> <br />
+                <label>
+                    <input id="Yes" type="radio" name="radioButton" value="Yes" onclick="acceptClicked()" />
+                    <span>Yes</span>
+                </label>
+                <label>
+                    <input id="No" type="radio" name="radioButton" value="No" onclick="acceptClicked()" />
+                    <span>No</span>
+                </label>
+
+                <div id="Extra" style="opacity: 1">
+                    <label>Do you wish to buy a menu with VIP?</label>
+                    <select class="form-check" id="Menu">
+
+                        <option selected="selected"></option>
+
+                        <option>Menu</option>
+
+                    </select>
+
+                    <label>Do you wish to buy champagne with VIP?</label>
+                    <select class="form-check" id="Champagne">
+
+                        <option selected="selected"></option>
+
+                        <option>Champagne</option>
+
+                    </select>
+                </div>
+
+
+                <a class="btn" type="button" asp-page="Index">
+                    <i class="events-button">Accept</i>
+                </a>
+
+                <a class="btn" type="button" asp-page="Index">
+                    <i class="events-button">Cancel</i>
+                </a>
+
+            </form>
+                
+
+                
+
+        </div>
 
     </div>
-        
-
-
+</div>
 
 </body>
+
+<script type="text/javascript">
+    function acceptClicked() {
+        if (document.getElementById('Yes').checked) {
+            document.getElementById('Extra').opacity = 1;
+        } else if (document.getElementById('Extra').option) {
+            document.getElementById('Extra').opacity = 0;
+            
+        } else {
+            document.getElementById('Extra').opacity = 0;
+        }
+    }
+</script>

@@ -9,6 +9,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using EventApp.Pages.Services;
 using EventAppLib.Model;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EventApp
 {
@@ -29,8 +32,6 @@ namespace EventApp
             services.AddSingleton<IService<Event>, EventService>();
 
             services.AddSingleton<IService<User>, UserService>();
-
-            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +49,6 @@ namespace EventApp
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseSession();
 
             app.UseAuthorization();
 
