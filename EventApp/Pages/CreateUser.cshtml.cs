@@ -34,6 +34,7 @@ namespace EventApp.Pages
             }
 
             
+            
 
             return RedirectToPage("/Index");
         }

@@ -5,6 +5,14 @@
     ViewData["Title"] = "Enlist";
 }
 
+@functions
+{
+    public void AcceptClickedYes()
+    {
+        
+    }
+}
+
 <body>
 
 <div class="container" style="text-align: -webkit-center">
@@ -26,7 +34,7 @@
             <form method="post">
 
                 <label>Number om reservations:</label> <br />
-                <select class="form-control">
+                <select class="form-control" asp-for="Event.Reservations">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -43,38 +51,6 @@
                     <option>14</option>
                     <option>15</option>
                 </select>
-
-                <label>EXTRA OPTIONS:</label> <br />
-                <label>Do you wish to buy VIP?</label> <br />
-                <label>
-                    <input id="Yes" type="radio" name="radioButton" value="Yes" onclick="acceptClicked()" />
-                    <span>Yes</span>
-                </label>
-                <label>
-                    <input id="No" type="radio" name="radioButton" value="No" onclick="acceptClicked()" />
-                    <span>No</span>
-                </label>
-
-                <div id="Extra" style="opacity: 1">
-                    <label>Do you wish to buy a menu with VIP?</label>
-                    <select class="form-check" id="Menu">
-
-                        <option selected="selected"></option>
-
-                        <option>Menu</option>
-
-                    </select>
-
-                    <label>Do you wish to buy champagne with VIP?</label>
-                    <select class="form-check" id="Champagne">
-
-                        <option selected="selected"></option>
-
-                        <option>Champagne</option>
-
-                    </select>
-                </div>
-
 
                 <a class="btn" type="button" asp-page="Index">
                     <i class="events-button">Accept</i>

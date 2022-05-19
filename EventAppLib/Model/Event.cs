@@ -12,6 +12,8 @@ namespace EventAppLib.Model
         private int _id;
         private string _title;
         private string _description;
+        private string _reservations;
+        private DateTime _date;
         private static int NextID = 1;
 
         #endregion
@@ -20,14 +22,16 @@ namespace EventAppLib.Model
 
         public Event()
         {
-            
+
         }
 
-        public Event(int id, string title, string description)
+        public Event(int id, string title, string description, string reservations, DateTime date)
         {
             _id = id;
             _title = title;
             _description = description;
+            _reservations = reservations;
+            _date = date;
         }
 
         #endregion
@@ -52,6 +56,18 @@ namespace EventAppLib.Model
             set => _description = value;
         }
 
+        public string Reservations
+        {
+            get => _reservations;
+            set => _reservations = value;
+        }
+
+        public DateTime Date
+        {
+            get => _date;
+            set => _date = value;
+        }
+
         public static int NextId
         {
             get => NextID;
@@ -64,7 +80,7 @@ namespace EventAppLib.Model
 
         public override string ToString()
         {
-            return $"{nameof(_id)}: {_id}, {nameof(_title)}: {_title}, {nameof(_description)}: {_description}";
+            return $"{nameof(_id)}: {_id}, {nameof(_title)}: {_title}, {nameof(_description)}: {_description}, {nameof(_reservations)}: {_reservations}, {nameof(_date)}: {_date}";
         }
 
         #endregion

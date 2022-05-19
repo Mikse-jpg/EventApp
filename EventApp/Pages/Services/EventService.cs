@@ -20,6 +20,10 @@ namespace EventApp.Pages.Services
 
         public EventAppLib.Model.Event Create(EventAppLib.Model.Event newEvent)
         {
+            //List<EventAppLib.Model.Event> events = new List<EventAppLib.Model.Event>();
+
+            // string sql = "select insert into";
+
             throw new NotImplementedException();
         }
 
@@ -59,7 +63,7 @@ namespace EventApp.Pages.Services
 
         public EventAppLib.Model.Event GetById(int id)
         {
-            string sql = "select * from Event where Id=@Id";
+            string sql = "select * from Event where Id=" + id;
 
             //opret forbindelse til dB
             using (SqlConnection connection = new SqlConnection(connectionString))

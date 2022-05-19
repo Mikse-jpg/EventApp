@@ -14,65 +14,53 @@ namespace EventAppLib.Model
 
         #region InstanceFields
 
-        private string _name;
-        private string _password;
         private int _id;
-        private int _numberReservations;
-        private int _eventId;
+        private string _password;
+        private string _username;
+        private static int _nextId;
 
         #endregion
 
         #region Constructor
+
         public User()
         {
             
         }
 
-        public User(string name, string password, int id, int numberReservations, int eventId)
+        public User(int id, string password, string username)
         {
-            _name = name;
-            _password = password;
             _id = id;
-            _numberReservations = numberReservations;
-            _eventId = eventId;
+            _password = password;
+            _username = username;
         }
+
 
         #endregion
 
         #region Properties
-
-        [Required(ErrorMessage = "Remember to pick a username.")]
-        [StringLength(12, MinimumLength = 4, ErrorMessage = "Dit navn skal være mellem 4 og 12 tegn.")]
-        public string Name
-        {
-            get => _name;
-            set => _name = value;
-        }
-
-        [Required(ErrorMessage = "Remember to pick a password")]
-        [StringLength(16, MinimumLength = 6, ErrorMessage = "Din kode skal være mellem 6 og 16 tegn.")]
-        public string Password
-        {
-            get => _password;
-            set => _password = value;
-        }
-
         public int Id
         {
             get => _id;
             set => _id = value;
         }
 
-        public int NumberReservations
+        public string Password
         {
-            get => _numberReservations;
-            set => _numberReservations = value;
+            get => _password;
+            set => _password = value;
         }
 
-        public int EventId
+        public string Username
         {
-            get => _eventId;
-            set => _eventId = value;
+            get => _username;
+            set => _username = value;
+        }
+
+        public static int NextId
+        {
+            get => _nextId;
+            set => _nextId = value;
         }
 
         #endregion
@@ -81,7 +69,7 @@ namespace EventAppLib.Model
 
         public override string ToString()
         {
-            return $"{nameof(_name)}: {_name}, {nameof(_password)}: {_password}, {nameof(_id)}: {_id}, {nameof(_numberReservations)}: {_numberReservations}, {nameof(_eventId)}: {_eventId}";
+            return $"{nameof(_id)}: {_id}, {nameof(_password)}: {_password}, {nameof(_username)}: {_username}";
         }
 
         #endregion

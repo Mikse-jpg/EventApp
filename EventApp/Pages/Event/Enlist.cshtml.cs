@@ -30,5 +30,22 @@ namespace EventApp.Pages.Event
         {
             Event = _eventService.GetById(id);
         }
+
+        public IActionResult OnPost(EventAppLib.Model.Event event)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+
+
+            return RedirectToPage("Index");
+        }
+
+        protected void AcceptClickedYes(object sender, EventArgs e)
+        {
+            var x = 1;
+        }
     }
 }
