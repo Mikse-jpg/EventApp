@@ -31,16 +31,10 @@ namespace EventApp.Pages.Event
             Event = _eventService.GetById(id);
         }
 
-        public IActionResult OnPost(EventAppLib.Model.Event event)
+        public void OnPost()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-
-
-            return RedirectToPage("Index");
+            _eventService.Create(Event);
+            
         }
 
         protected void AcceptClickedYes(object sender, EventArgs e)

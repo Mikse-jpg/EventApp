@@ -2,19 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EventApp.Pages.Services;
-using EventAppLib.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace EventApp.Pages.Event
+namespace EventApp.Pages.Admin
 {
-    public class AdminModel : PageModel
+    public class StatisticsModel : PageModel
     {
-
-        public void OnGet(int id)
+        public void OnGet()
         {
-            
         }
     }
 }

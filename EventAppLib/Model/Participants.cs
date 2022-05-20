@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventAppLib.Model
 {
+
     class Participants
     {
         #region Instance fields

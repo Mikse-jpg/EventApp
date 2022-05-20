@@ -20,11 +20,33 @@ namespace EventApp.Pages.Services
 
         public EventAppLib.Model.Event Create(EventAppLib.Model.Event newEvent)
         {
-            //List<EventAppLib.Model.Event> events = new List<EventAppLib.Model.Event>();
 
-            // string sql = "select insert into";
+            EventAppLib.Model.Event createEvent = newEvent;
 
-            throw new NotImplementedException();
+            string sql = "insert into Event values('" + newEvent.Id + "', '" + newEvent.Title + "', '" + newEvent.Description + "', '" + newEvent.Date + "', '" + newEvent.Reservations + "')";
+
+            //opret forbindelse til dB
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //åbner forbindelse
+                connection.Open();
+
+                //opretter sql query
+                SqlCommand cmd = new SqlCommand(sql, connection);
+
+                //altid ved select
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                //læser alle rækker
+                while (reader.Read())
+                {
+                    EventAppLib.Model.Event owner = ReadEvent(reader);
+                    
+                }
+            }
+
+            return newEvent;
+
         }
 
         public EventAppLib.Model.Event Delete(string txt)
@@ -104,6 +126,8 @@ namespace EventApp.Pages.Services
             owner.Id = reader.GetInt32(0);
             owner.Title = reader.GetString(1);
             owner.Description = reader.GetString(2);
+            owner.Date = reader.GetDateTime(3);
+            owner.Reservations = reader.GetInt32(4);
 
             return owner;
         }

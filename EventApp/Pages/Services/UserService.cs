@@ -21,22 +21,8 @@ namespace EventApp.Pages.Services
 
         public User Create(User newUser)
         {
-            throw new NotImplementedException();
-        }
 
-        public User Delete(string txt)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<User> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public User GetById(int id)
-        {
-            string sql = "select * from User where Id=@Id";
+            string sql = $"insert into [User] values('" + newUser.Id + "', '" + newUser.Username + "', '" + newUser.Password + "')";
 
             //opret forbindelse til dB
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -47,8 +33,40 @@ namespace EventApp.Pages.Services
                 //opretter sql query
                 SqlCommand cmd = new SqlCommand(sql, connection);
 
-                //indsæt værdierne
-                cmd.Parameters.AddWithValue("@Id", id);
+                //altid ved select
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                //læser alle rækker
+                while (reader.Read())
+                {
+                    User owner = ReadPerson(reader);
+                    
+
+                }
+            }
+
+            return newUser;
+        }
+
+        public User Delete(string txt)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<User> GetAll()
+        {
+            List<User> users = new List<User>();
+
+            string sql = "select * from [User]";
+
+            //opret forbindelse til dB
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //åbner forbindelse
+                connection.Open();
+
+                //opretter sql query
+                SqlCommand cmd = new SqlCommand(sql, connection);
 
                 //altid ved select
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -57,11 +75,16 @@ namespace EventApp.Pages.Services
                 while (reader.Read())
                 {
                     User owner = ReadPerson(reader);
-                    return owner;
+                    users.Add(owner);
                 }
             }
 
-            return null;
+            return users;
+        }
+
+        public User GetById(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public User Modify(User modifiedUserStory, string txt)
@@ -74,9 +97,9 @@ namespace EventApp.Pages.Services
         {
             User h = new User();
 
-            //h.Id = reader.GetInt32(0);
-            //h.Name = reader.GetString(4);
-            
+            h.Id = reader.GetInt32(0);
+            h.Username = reader.GetString(1);
+            h.Password = reader.GetString(2);
 
 
             return h;

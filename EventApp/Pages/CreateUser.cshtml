@@ -9,18 +9,20 @@
 <div class="container" style="align-content: center">
     
     <div class="card mb-2" style="width: 50rem">
-        <div class="card-header">
+        <div class="card-header" align="center">
             <h1>Create a user</h1>
 
         </div>
         
-        <div class="card-body">
+        <div class="card-body" style="align-self: center; text-align: center">
             
             <form method="post">
+
+                <input type="text" asp-for="User.Username" placeholder="Username"/> <br/> <br/>
                 
-                <input type="text"/> <br/>
+                <input type="text" asp-for="User.Password "placeholder="Password"/> <br/> <br/>
                 
-                <input type="text"/>
+                <button class="events-button" type="submit">Create User</button>
                 
 
             </form>

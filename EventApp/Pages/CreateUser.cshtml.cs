@@ -33,9 +33,17 @@ namespace EventApp.Pages
                 return Page();
             }
 
-            
-            
+            if (_user.GetAll().Count == 0)
+            {
+                User.Id = 0;
 
+            }
+            else
+            {
+                User.Id = _user.GetAll().Count + 1;
+            }
+
+            _user.Create(User);
             return RedirectToPage("/Index");
         }
     }

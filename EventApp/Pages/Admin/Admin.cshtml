@@ -1,0 +1,35 @@
+﻿@page
+@model EventApp.Pages.Admin.AdminModel
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<body>
+    
+<div class="container" style="position: center">
+    
+    <div class="card mb-2" style="width: 50rem">
+        <div class="card-header" align="center">
+            <h1>Admin privileges</h1>
+        </div>
+        <div class="card-body" style="align-self: center; text-align: center">
+
+            <a class="btn" type="button" asp-page="AdminEvents">
+                <button class="events-button" style="border-radius: 5px; border-color: black">Edit Events</button>
+            </a>
+
+            <a class="btn" type="button" asp-page="Statistics">
+                <button class="events-button" style="border-radius: 5px; border-color: black">Check statistics</button>
+            </a>
+
+        </div>
+        
+        <div class="card-footer">
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>

@@ -17,7 +17,6 @@ namespace EventAppLib.Model
         private int _id;
         private string _password;
         private string _username;
-        private static int _nextId;
 
         #endregion
 
@@ -55,12 +54,6 @@ namespace EventAppLib.Model
         {
             get => _username;
             set => _username = value;
-        }
-
-        public static int NextId
-        {
-            get => _nextId;
-            set => _nextId = value;
         }
 
         #endregion

@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace EventAppLib.Model
 {
+
     public class Event
     {
         #region Instance fields
         private int _id;
         private string _title;
         private string _description;
-        private string _reservations;
+        private int _reservations;
         private DateTime _date;
         private static int NextID = 1;
 
@@ -25,7 +28,7 @@ namespace EventAppLib.Model
 
         }
 
-        public Event(int id, string title, string description, string reservations, DateTime date)
+        public Event(int id, string title, string description, int reservations, DateTime date)
         {
             _id = id;
             _title = title;
@@ -56,7 +59,7 @@ namespace EventAppLib.Model
             set => _description = value;
         }
 
-        public string Reservations
+        public int Reservations
         {
             get => _reservations;
             set => _reservations = value;

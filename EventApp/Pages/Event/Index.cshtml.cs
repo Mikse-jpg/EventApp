@@ -19,12 +19,34 @@ namespace EventApp.Pages.Event
             _events = events;
             // _users = users;
         }
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
             Events = _events.GetAll();
+
+            return Page();
             // Users = _users.GetAll();
         }
 
+        public IActionResult OnPost()
+        {
+            var x = 1;
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            //Events = _events.GetAll();
+            return Page();
+        }
+
+        public IActionResult OnPostTest()
+        {
+            var x = 1;
+            //Events = _events.GetAll();
+            return Page();
+        }
+
+        [BindProperty]
         public List<EventAppLib.Model.Event> Events { get; set; }
 
         // public List<User> Users { get; set; }

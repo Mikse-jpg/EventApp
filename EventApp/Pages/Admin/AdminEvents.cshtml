@@ -1,0 +1,52 @@
+﻿@page
+@using EventAppLib.Model
+@model EventApp.Pages.Admin.AdminEventsModel
+@{
+    ViewData["Title"] = "AdminEvents";
+}
+
+<body>
+<h1 style="text-align: center">Admin-Events</h1>
+
+<div class="card">
+    <div class="card-body" style="align-self: center">
+        <a class="btn" type="button" asp-page="CreateEvent">
+            <button class="events-button" style="border-radius: 5px; border-color: black">Create new event</button>
+        </a>
+    </div>
+</div>
+
+<div>
+        @foreach (Event e in @Model.Events)
+        {
+            <div class="events-box">
+                <div class="events-header">
+                    <a>@e.Title</a>
+                </div>
+
+                <div class="events-body">
+                    <a>@e.Description</a>
+                </div>
+
+                <div class="events-footer">
+                    <div>
+
+                        <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@e.Id">
+                            <i class="fa fa-trash"></i>
+                        </a>
+
+                        <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@e.Id">
+                            <i class="fa fa-create"></i>
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</body>
