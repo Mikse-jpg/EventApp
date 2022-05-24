@@ -16,6 +16,8 @@ namespace EventApp.Pages
         [BindProperty]
         public User User { get; set; }
 
+        public string ErrorMessage;
+
         public CreateUserModel(IService<User> user)
         {
             _user = user;
@@ -30,6 +32,7 @@ namespace EventApp.Pages
         {
             if (!ModelState.IsValid)
             {
+                ErrorMessage = $"Cannot create user. Please try again. Check if Username & Password is below 8 signs.";
                 return Page();
             }
 

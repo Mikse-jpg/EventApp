@@ -1,0 +1,78 @@
+﻿@page "{id:int}"
+@using EventAppLib.Model
+@model EventApp.Pages.UserReservationsModel
+@{
+    ViewData["Title"] = "User Reservations";
+}
+
+<body>
+<div class="container">
+    <div class="figure-img">
+        <img />
+    </div>
+
+    <nav class="profile-navbar-bg navbar navbar-expand-sm navbar-bg box-shadow rounded mb-3">
+        <a class="navbar-brand" href="/Profile">@Model.LoggedInUser.Username</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-page="/Profile">Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-page="/UserReservations">My reservations</a>
+                </li>
+                    
+                @if (@Model.LoggedInUser.Roletype == 2)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-page="/Admin/Admin">Admin</a>
+                    </li>
+                }
+                    
+            </ul>
+        </div>
+    </nav>
+</div> <br/>
+
+<div class="container" align="center">
+    <header class="h3">My reservations</header> <br/>
+    
+    <table class="table-bordered" style="text-align: center; width: -webkit-fill-available; ">
+        <thead>
+        <tr>
+            <th>Event ID number</th>
+            <th>Did you order parking to this event?</th>
+            <th>Number of reservations</th>
+            <th></th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        @foreach (Participants e in @Model.Participants.FindAll(participants => participants.UserId == @Model.LoggedInUser.Id))
+        {
+            <tr>
+                <td>@e.EventId</td>
+                @if (e.Parking == 1)
+                {
+                    <td>
+                        Yes
+                    </td>
+                }
+                else
+                {
+                <td>
+                    No
+                </td>
+                }
+                <td>@e.Reservations</td>
+
+            </tr>
+        }
+        </tbody>
+
+    </table>
+
+
+</div>
+
+</body>

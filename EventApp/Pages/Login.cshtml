@@ -5,7 +5,7 @@
     Layout = "Shared/_HomeLayout";
 }
 
-<body> <br/> <br/> <br /> <br /> <br />
+<body style="background-color: slategrey"> <br/> <br/> <br /> <br /> <br />
 
 <div class="container" align="center">
     
@@ -15,15 +15,15 @@
         <form method="post">
 
             <div class="form-group">
-                <label for="brugernavn">Brugernavn</label>
+                <label style="font: bold 15px arial, verdana" for="brugernavn">Brugernavn</label> <br/>
                 <input type="text" asp-for="User.Username" placeholder="Brugernavn" /><br /><br />
 
-                <label for="password">Password</label>
+                <label style="font: bold 15px arial, verdana" for="password">Password</label> <br/>
                 <input type="password" asp-for="User.Password" placeholder="Adgangskode" /><br /><br />
 
                 @if (@Model.ErrorMessage != "")
                 {
-                    <p style="color: red">@Model.ErrorMessage</p>
+                    <p style="color: firebrick; font: bold 15px arial, verdana">@Model.ErrorMessage</p>
                 }
 
                 <input class="events-button" type="submit" value="Login" />

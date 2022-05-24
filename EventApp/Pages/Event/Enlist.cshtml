@@ -1,5 +1,6 @@
 ﻿@page "{id:int}"
 @using System.Reflection.Metadata
+@using EventAppLib.Model
 @model EventApp.Pages.Event.EnlistModel
 @{
     ViewData["Title"] = "Enlist";
@@ -27,6 +28,8 @@
 
                 <label>Number om reservations:</label> <br />
 
+                <input type="text" asp-for="Event.Id" placeholder="@Model.Event.Id" style="text-align: center" /> <br /> <br />
+
                 <select class="form-control" asp-for="Event.Reservations">
                     <option>1</option>
                     <option>2</option>
@@ -45,7 +48,14 @@
                     <option>15</option>
                 </select> <br /> <br />
 
-                <input type="text" asp-for="Event.Id" placeholder="@Model.Event.Id" style="text-align: center" /> <br /> <br />
+                <label>How many parking spots do you wish?</label> <br />
+                <select class="form-control" asp-for="Participants.Parking">
+                    <option>0</option>
+                    <option>1</option>
+                </select> <br /> <br />
+
+
+
 
 
 

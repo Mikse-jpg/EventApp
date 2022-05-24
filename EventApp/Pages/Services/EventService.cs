@@ -55,6 +55,11 @@ namespace EventApp.Pages.Services
 
         }
 
+        public EventAppLib.Model.Event AddParticipation(EventAppLib.Model.Event addToEvent)
+        {
+            throw new NotImplementedException();
+        }
+
         public EventAppLib.Model.Event AddReservation(EventAppLib.Model.Event newEvent)
         {
 
@@ -177,6 +182,7 @@ namespace EventApp.Pages.Services
 
         }
 
+
         public EventAppLib.Model.Event Modify(EventAppLib.Model.Event modifiedUserStory, string txt)
         {
             throw new NotImplementedException();
@@ -194,5 +200,7 @@ namespace EventApp.Pages.Services
 
             return owner;
         }
+
+        
     }
 }

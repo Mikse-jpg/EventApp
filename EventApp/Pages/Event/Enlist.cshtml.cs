@@ -12,13 +12,18 @@ namespace EventApp.Pages.Event
     public class EnlistModel : PageModel
     {
         private IService<EventAppLib.Model.Event> _eventService;
+        private IService<Participants> _participantsService;
         
         public LoggedInUser LoggedInUser { get; set; }
+
+        [BindProperty]
+        public Participants Participants { get; set; }
 
         public EnlistModel(IService<EventAppLib.Model.Event> eventService, LoggedInUser loggedInUser)
         {
             _eventService = eventService;
             LoggedInUser = loggedInUser;
+            _participantsService = new ParticipantsService();
         }
 
         [BindProperty]
@@ -32,14 +37,20 @@ namespace EventApp.Pages.Event
             }
 
             Event = _eventService.GetById(id);
+            
             return Page();
         }
 
-        public IActionResult OnPost(EventAppLib.Model.Event events)
+        public IActionResult OnPost(EventAppLib.Model.Event events, Participants participants)
         {
             events.Id = Event.Id;
+            
+            Participants.EventId = Event.Id;
+            Participants.Reservations = Event.Reservations;
+            Participants.UserId = LoggedInUser.Id;
 
             _eventService.AddReservation(Event);
+            _participantsService.AddParticipation(Participants);
             return RedirectToPage("/Index");
 
         }

@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - EventApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.css?v=1" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/css/CustomStyleSheet.css" />
+    <link rel="stylesheet" href="~/css/CustomStyleSheet.css?v=1" />
 </head>
 <body>
     <header>
@@ -33,12 +33,8 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Train">Train Departures</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Profile">Profile</a>
-                        </li>
-
                         <li class="nav-item ml-auto">
-                            <button type="button" onclick="window.location.href = '/Login'" class="btn btn-secondary-own">Login</button>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Profile">Profile</a>
                         </li>
 
                     </ul>
@@ -52,13 +48,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - EventApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 

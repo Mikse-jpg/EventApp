@@ -6,8 +6,7 @@
 }
 
 
-<body>
-<br /> <br /> <br /> <br /> <br />
+<body style="background-color: slategrey"> <br /> <br /> <br /> <br /> <br />
 
 <div class="container" align="center">
 
@@ -16,11 +15,16 @@
     <div>
         <form method="post">
 
-            <label class="form-check-label">Username</label>
+            <label style="font: bold 15px arial, verdana">Username</label>
             <input type="text" asp-for="User.Username" placeholder="Username" /> <br /> <br />
 
-            <label class="form-check-label">Password</label>
-            <input type="text" asp-for="User.Password" placeholder="Password" /> <br /> <br />
+            <label style="font: bold 15px arial, verdana">Password</label>
+            <input type="password" asp-for="User.Password" placeholder="Password" /> <br /> <br />
+
+            @if (@Model.ErrorMessage != "")
+            {
+                <p style="color: firebrick; font: bold 15px arial, verdana">@Model.ErrorMessage</p>
+            }
 
             <button class="events-button" type="submit">Create User</button>
 

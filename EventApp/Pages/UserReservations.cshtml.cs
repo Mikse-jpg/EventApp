@@ -9,10 +9,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EventApp.Pages
 {
-    public class ProfileModel : PageModel
+    public class UserReservationsModel : PageModel
     {
         private User _user;
         private EventAppLib.Model.Event _event;
+        private IService<Participants> _participantsService;
 
         [BindProperty]
         public User User { get; set; }
@@ -20,26 +21,29 @@ namespace EventApp.Pages
         [BindProperty]
         public EventAppLib.Model.Event Event { get; set; }
 
+        [BindProperty]
+        public List<Participants> Participants { get; set; }
+
         public LoggedInUser LoggedInUser { get; set; }
 
-        public ProfileModel(LoggedInUser user)
+        public UserReservationsModel(LoggedInUser user, IService<Participants> participants)
         {
             LoggedInUser = user;
+            _participantsService = participants;
+
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int id)
         {
             if (!LoggedInUser.LoggedIn)
             {
                 return RedirectToPage("/Login");
             }
 
+            id = LoggedInUser.Id;
+            Participants = _participantsService.GetAll();
+
             return Page();
         }
-
-        //public IActionResult OnPost()
-        //{
-
-        //}
     }
 }

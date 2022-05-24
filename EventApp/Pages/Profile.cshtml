@@ -18,23 +18,27 @@
                         <a class="nav-link" asp-area="" asp-page="/Profile">Posts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-page="/SpilleListe">My reservations</a>
+                        <a class="nav-link" asp-page="/UserReservations" asp-route-id="@Model.LoggedInUser.Id">My reservations</a>
                     </li>
-                    
+
                     @if (@Model.LoggedInUser.Roletype == 2)
                     {
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Admin/Admin">Admin</a>
                         </li>
                     }
-                    
+
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" asp-area="" asp-page="/">Logout</a>
+                    </li>
+
                 </ul>
             </div>
         </nav>
     </div>
 
     <div class="container" align="center">
-        <header class="h4">My Posts</header>
+        <header class="h4">Profile</header>
 
 
 

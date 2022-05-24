@@ -33,6 +33,8 @@ namespace EventApp
 
             services.AddSingleton<IService<User>, UserService>();
 
+            services.AddSingleton<IService<Participants>, ParticipantsService>();
+
             services.AddSingleton<LoggedInUser, LoggedInUser>();
         }
 

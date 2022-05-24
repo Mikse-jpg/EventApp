@@ -49,13 +49,21 @@ namespace EventAppLib.Model
         public string Password
         {
             get => _password;
-            set => _password = value;
+            set
+            {
+                checkPassword(value);
+                _password = value;
+            }
         }
 
         public string Username
         {
             get => _username;
-            set => _username = value;
+            set
+            {
+                checkUsername(value);
+                _username = value;
+            }
         }
 
         public int Roletype
@@ -67,6 +75,23 @@ namespace EventAppLib.Model
         #endregion
 
         #region Methods
+
+        private void checkUsername(string username)
+        {
+            if (username.Length < 8)
+            {
+                throw new ArgumentException($"Username must be at least 8 characters. Yours is: {username.Length}");
+            }
+        }
+
+        private void checkPassword(string password)
+        {
+            if (password.Length < 8)
+            {
+                throw new ArgumentException($"Password must be at least 8 characters. Yours is: {password.Length}");
+            }
+        }
+
 
         public override string ToString()
         {

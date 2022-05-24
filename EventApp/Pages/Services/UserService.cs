@@ -132,5 +132,10 @@ namespace EventApp.Pages.Services
         {
             throw new NotImplementedException();
         }
+
+        public User AddParticipation(User addToEvent)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

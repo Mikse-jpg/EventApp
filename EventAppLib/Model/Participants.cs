@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 namespace EventAppLib.Model
 {
 
-    class Participants
+    public class Participants
     {
         #region Instance fields
 
         private int _userId;
         private int _eventId;
         private int _parking;
+        private int _reservations;
 
         #endregion
 
@@ -24,11 +25,12 @@ namespace EventAppLib.Model
             
         }
 
-        public Participants(int userId, int eventId, int parking)
+        public Participants(int userId, int eventId, int parking, int reservations)
         {
             _userId = userId;
             _eventId = eventId;
             _parking = parking;
+            _reservations = reservations;
         }
 
         #endregion
@@ -53,13 +55,19 @@ namespace EventAppLib.Model
             set => _parking = value;
         }
 
+        public int Reservations
+        {
+            get => _reservations;
+            set => _reservations = value;
+        }
+
         #endregion
 
         #region Methods
 
         public override string ToString()
         {
-            return $"{nameof(_userId)}: {_userId}, {nameof(_eventId)}: {_eventId}, {nameof(_parking)}: {_parking}";
+            return $"{nameof(_userId)}: {_userId}, {nameof(_eventId)}: {_eventId}, {nameof(_parking)}: {_parking}, {nameof(_reservations)}: {_reservations}";
         }
 
         #endregion
