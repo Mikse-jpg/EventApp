@@ -13,17 +13,26 @@ namespace EventApp.Pages.Admin
 
         private IService<EventAppLib.Model.Event> _events;
 
+        public LoggedInUser LoggedInUser { get; set; }
+
         [BindProperty]
         public List<EventAppLib.Model.Event> Events { get; set; }
 
-        public StatisticsModel(IService<EventAppLib.Model.Event> events)
+        public StatisticsModel(IService<EventAppLib.Model.Event> events, LoggedInUser loggedInUser)
         {
             _events = events;
+            LoggedInUser = loggedInUser;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (!LoggedInUser.LoggedIn)
+            {
+                return RedirectToPage("/Login");
+            }
+
             Events = _events.GetAll();
+            return Page();
         }
     }
 }

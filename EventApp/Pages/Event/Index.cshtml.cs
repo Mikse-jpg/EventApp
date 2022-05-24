@@ -12,24 +12,30 @@ namespace EventApp.Pages.Event
     public class IndexModel : PageModel
     {
         private IService<EventAppLib.Model.Event> _events;
-        // private IService<User> _users;
 
-        public IndexModel(IService<EventAppLib.Model.Event> events /*IService<User> users*/)
-        {
-            _events = events;
-            // _users = users;
-        }
-        public IActionResult OnGet(int id)
-        {
-            Events = _events.GetAll();
-
-            return Page();
-            // Users = _users.GetAll();
-        }
+        public LoggedInUser LoggedInUser { get; set; }
 
         [BindProperty]
         public List<EventAppLib.Model.Event> Events { get; set; }
 
-        // public List<User> Users { get; set; }
+        public IndexModel(IService<EventAppLib.Model.Event> events, LoggedInUser loggedInUser)
+        {
+            _events = events;
+            LoggedInUser = loggedInUser;
+        }
+        public IActionResult OnGet(int id)
+        {
+            if (!LoggedInUser.LoggedIn)
+            {
+                return RedirectToPage("/Login");
+            }
+
+            Events = _events.GetAll();
+            return Page();
+        }
+
+        
+
+        
     }
 }

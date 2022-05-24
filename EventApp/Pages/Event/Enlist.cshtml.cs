@@ -12,19 +12,27 @@ namespace EventApp.Pages.Event
     public class EnlistModel : PageModel
     {
         private IService<EventAppLib.Model.Event> _eventService;
+        
+        public LoggedInUser LoggedInUser { get; set; }
 
-        public EnlistModel(IService<EventAppLib.Model.Event> eventService)
+        public EnlistModel(IService<EventAppLib.Model.Event> eventService, LoggedInUser loggedInUser)
         {
             _eventService = eventService;
-
+            LoggedInUser = loggedInUser;
         }
 
         [BindProperty]
         public EventAppLib.Model.Event Event { get; set; }
 
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
+            if (!LoggedInUser.LoggedIn)
+            {
+                return RedirectToPage("/Login");
+            }
+
             Event = _eventService.GetById(id);
+            return Page();
         }
 
         public IActionResult OnPost(EventAppLib.Model.Event events)

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventApp.Pages.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -9,8 +10,21 @@ namespace EventApp.Pages.Admin
 {
     public class AdminModel : PageModel
     {
-        public void OnGet()
+        public LoggedInUser LoggedInUser { get; set; }
+
+        public AdminModel(LoggedInUser loggedInUser)
         {
+            LoggedInUser = loggedInUser;
+        }
+
+        public IActionResult OnGet()
+        {
+            if (!LoggedInUser.LoggedIn)
+            {
+                return RedirectToPage("/Login");
+            }
+
+            return Page();
         }
     }
 }
