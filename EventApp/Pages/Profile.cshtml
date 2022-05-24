@@ -1,0 +1,43 @@
+﻿@page
+@model EventApp.Pages.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<body>
+    <div class="container">
+        <div class="figure-img">
+            <img />
+        </div>
+
+        <nav class="profile-navbar-bg navbar navbar-expand-sm navbar-bg box-shadow rounded mb-3">
+            <a class="navbar-brand" href="/Profile">@Model.LoggedInUser.Username</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-page="/Profile">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-page="/SpilleListe">My reservations</a>
+                    </li>
+                    
+                    @if (@Model.LoggedInUser.Roletype == 2)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Admin/Admin">Admin</a>
+                        </li>
+                    }
+                    
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container" align="center">
+        <header class="h4">My Posts</header>
+
+
+
+    </div>
+
+</body>

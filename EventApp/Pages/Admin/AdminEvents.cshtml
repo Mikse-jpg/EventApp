@@ -8,8 +8,8 @@
 <body>
 <h1 style="text-align: center">Admin-Events</h1>
 
-<div class="card">
-    <div class="card-body" style="align-self: center">
+<div class="card" style="text-align: -webkit-center">
+    <div class="card-body" >
         <a class="btn" type="button" asp-page="CreateEvent">
             <button class="events-button" style="border-radius: 5px; border-color: black">Create new event</button>
         </a>
@@ -40,7 +40,7 @@
                     <form method="post">
                         
 
-                        <input type="submit" class="fa fa-trash" asp-route-id="@e.Id"/>
+                        <input type="submit" class="btn-warning" value="Delete" asp-route-id="@e.Id"/>
                     </form>
 
                 </td>

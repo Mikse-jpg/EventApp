@@ -6,8 +6,8 @@
     <title>@ViewData["Title"] - EventApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/CustomStyleSheet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/CustomStyleSheet.css" />
 </head>
 <body>
     <header>
@@ -22,10 +22,6 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Homepage</a>
-                        </li>
-
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Event/Index">Events</a>
                         </li>
 
@@ -34,16 +30,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Program">Train Departures</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Train">Train Departures</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Admin">Admin</a>
-                        </li>
-
-
-                        <li class="nav-item ml-auto">
-                            <button type="button" onclick="window.location.href = '/CreateUser'" class="btn btn-secondary-own">New user?</button>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Profile">Profile</a>
                         </li>
 
                         <li class="nav-item ml-auto">

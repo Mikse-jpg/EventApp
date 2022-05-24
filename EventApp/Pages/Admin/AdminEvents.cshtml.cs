@@ -17,14 +17,22 @@ namespace EventApp.Pages.Admin
         [BindProperty]
         public List<EventAppLib.Model.Event> Events { get; set; }
 
-        public AdminEventsModel(IService<EventAppLib.Model.Event> events)
+        public LoggedInUser LoggedInUser { get; set; }
+
+        public AdminEventsModel(IService<EventAppLib.Model.Event> events, LoggedInUser loggedInUser)
         {
             _events = events;
+            LoggedInUser = loggedInUser;
         }
 
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
+            if (!LoggedInUser.LoggedIn)
+            {
+                return RedirectToPage("/Login");
+            }
             Events = _events.GetAll();
+            return Page();
         }
 
         public void OnPost(EventAppLib.Model.Event events)

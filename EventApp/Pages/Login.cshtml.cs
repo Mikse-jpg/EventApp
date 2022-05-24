@@ -9,26 +9,35 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using System.Web;
+using Microsoft.Extensions.Logging;
 
 namespace EventApp.Pages
 {
     public class LoginModel : PageModel
     {
         private readonly IService<User> _user;
+        private readonly ILogger<IndexModel> _logger;
+        private LoggedInUser _loggedInUser;
+
+        public LoggedInUser loggedinuser { get => _loggedInUser; }
 
         public string ErrorMessage;
-
-        public LoginModel(IService<User> user)
-        {
-            _user = user;
-        }
 
         [BindProperty]
         public User User { get; set; }
 
-        public void OnGet()
-        {
 
+        public LoginModel(ILogger<IndexModel> logger, IService<User> user, LoggedInUser loggedInUser)
+        {
+            _user = user;
+            _logger = logger;
+            _loggedInUser = loggedInUser;
+        }
+
+        
+        public IActionResult OnGet()
+        {
+            return Page();
         }
 
         public IActionResult OnPost(User user)
@@ -37,6 +46,11 @@ namespace EventApp.Pages
 
             if (result)
             {
+                loggedinuser.LoggedIn = true;
+                _loggedInUser.Id = user.Id;
+                _loggedInUser.Username = user.Username;
+                _loggedInUser.Roletype = user.Roletype;
+
                 return RedirectToPage("/Index");
             }
             else

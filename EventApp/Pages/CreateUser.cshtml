@@ -2,41 +2,38 @@
 @model EventApp.Pages.CreateUserModel
 @{
     ViewData["Title"] = "Create User";
+    Layout = "Shared/_HomeLayout";
 }
 
+
 <body>
-    
-<div class="container" style="align-content: center">
-    
-    <div class="card mb-2" style="width: 50rem">
-        <div class="card-header" align="center">
-            <h1>Create a user</h1>
+<br /> <br /> <br /> <br /> <br />
 
-        </div>
-        
-        <div class="card-body" style="align-self: center; text-align: center">
-            
-            <form method="post">
+<div class="container" align="center">
 
-                <input type="text" asp-for="User.Username" placeholder="Username"/> <br/> <br/>
-                
-                <input type="text" asp-for="User.Password "placeholder="Password"/> <br/> <br/>
-                
-                <button class="events-button" type="submit">Create User</button>
-                
+    <h1 style="text-align: center">Sign Up</h1><br />
 
-            </form>
-            
+    <div>
+        <form method="post">
 
-        </div>
-        
-        <div class="card-footer">
-            
+            <label class="form-check-label">Username</label>
+            <input type="text" asp-for="User.Username" placeholder="Username" /> <br /> <br />
 
-        </div>
+            <label class="form-check-label">Password</label>
+            <input type="text" asp-for="User.Password" placeholder="Password" /> <br /> <br />
+
+            <button class="events-button" type="submit">Create User</button>
+
+            <button type="button" class="events-button" onclick="window.location.href = '/Login'">Already signed up?</button>
+
+        </form>
 
     </div>
 
 </div>
 
 </body>
+
+
+
+

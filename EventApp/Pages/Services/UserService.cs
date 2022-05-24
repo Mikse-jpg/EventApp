@@ -23,7 +23,7 @@ namespace EventApp.Pages.Services
         public User Create(User newUser)
         {
 
-            string sql = $"insert into [User] values('" + newUser.Id + "', '" + newUser.Username + "', '" + newUser.Password + "')";
+            string sql = $"insert into [User] values('" + newUser.Id + "', '" + newUser.Username + "', '" + newUser.Password + "', '1')";
 
             //opret forbindelse til dB
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -104,6 +104,8 @@ namespace EventApp.Pages.Services
             {
                 if (us.Username == check.Username && us.Password == check.Password)
                 {
+                    check.Id = us.Id;
+                    check.Roletype = us.Roletype;
                     return true;
                 }
             }
@@ -120,6 +122,7 @@ namespace EventApp.Pages.Services
             h.Id = reader.GetInt32(0);
             h.Username = reader.GetString(1);
             h.Password = reader.GetString(2);
+            h.Roletype = reader.GetInt32(3);
 
 
             return h;

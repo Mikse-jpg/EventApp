@@ -17,6 +17,7 @@ namespace EventAppLib.Model
         private int _id;
         private string _password;
         private string _username;
+        private int _roletype;
 
         #endregion
 
@@ -27,11 +28,12 @@ namespace EventAppLib.Model
             
         }
 
-        public User(int id, string password, string username)
+        public User(int id, string password, string username, int roletype)
         {
             _id = id;
             _password = password;
             _username = username;
+            _roletype = roletype;
         }
 
 
@@ -56,13 +58,19 @@ namespace EventAppLib.Model
             set => _username = value;
         }
 
+        public int Roletype
+        {
+            get => _roletype;
+            set => _roletype = value;
+        }
+
         #endregion
 
         #region Methods
 
         public override string ToString()
         {
-            return $"{nameof(_id)}: {_id}, {nameof(_password)}: {_password}, {nameof(_username)}: {_username}";
+            return $"{nameof(_id)}: {_id}, {nameof(_password)}: {_password}, {nameof(_username)}: {_username}, {nameof(_roletype)}: {_roletype}";
         }
 
         #endregion

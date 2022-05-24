@@ -32,6 +32,8 @@ namespace EventApp
             services.AddSingleton<IService<Event>, EventService>();
 
             services.AddSingleton<IService<User>, UserService>();
+
+            services.AddSingleton<LoggedInUser, LoggedInUser>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,23 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EventApp.Pages.Services;
+using EventAppLib.Model;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EventApp.Pages
 {
-    public class IndexModel : PageModel
+    public class ProfileModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private User _user;
+        private EventAppLib.Model.Event _event;
+
+        [BindProperty]
+        public User User { get; set; }
+
+        [BindProperty]
+        public EventAppLib.Model.Event Event { get; set; }
 
         public LoggedInUser LoggedInUser { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, LoggedInUser user)
+        public ProfileModel(LoggedInUser user)
         {
-            _logger = logger;
             LoggedInUser = user;
         }
 
