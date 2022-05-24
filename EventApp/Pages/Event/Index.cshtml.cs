@@ -27,25 +27,6 @@ namespace EventApp.Pages.Event
             // Users = _users.GetAll();
         }
 
-        public IActionResult OnPost()
-        {
-            var x = 1;
-
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-            //Events = _events.GetAll();
-            return Page();
-        }
-
-        public IActionResult OnPostTest()
-        {
-            var x = 1;
-            //Events = _events.GetAll();
-            return Page();
-        }
-
         [BindProperty]
         public List<EventAppLib.Model.Event> Events { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿@page
+@using EventAppLib.Model
 @model EventApp.Pages.Admin.StatisticsModel
 @{
     ViewData["Title"] = "AdminStatistics";
@@ -6,6 +7,28 @@
 
 <body>
 
-    <h1>Statistics</h1>
+<table class="table-bordered" style="text-align: center; width: -webkit-fill-available; ">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>ID</th>
+        <th>Reservations</th>
+    </tr>
+    </thead>
+        
+    <tbody>
+    @foreach (Event e in @Model.Events)
+    {
+        <tr>
+            <td>@e.Title</td>
+            <td>@e.Description</td>
+            <td>@e.Id</td>
+            <td>@e.Reservations</td>
+        </tr>
+    }
+    </tbody>
+
+</table>
 
 </body>

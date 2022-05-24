@@ -11,11 +11,11 @@ namespace EventApp.Model
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3, ErrorMessage = "Title must be atleast 3 characters")]
+        [MinLength(3, ErrorMessage = "Title must be at least 3 characters")]
         public String Title { get; set; }
 
         [Required]
-        [MinLength(10, ErrorMessage = "Description must be atleast 10 characters")]
+        [MinLength(10, ErrorMessage = "Description must be at least 20 characters")]
         public String Description { get; set; }
 
 

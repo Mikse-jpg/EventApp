@@ -15,7 +15,11 @@ namespace EventApp.Pages.Services
 
         T Create(T newEvent);
 
-        T Delete(string txt);
+        bool Check(T check);
+
+        T AddReservation(T addToEvent);
+
+        string Delete(T newEvent);
 
         T Modify(T modifiedUserStory, string txt);
     }

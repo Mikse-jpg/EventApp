@@ -2,9 +2,10 @@
 @model EventApp.Pages.LoginModel
 @{
     ViewData["Title"] = "Login";
+    Layout = "Shared/_HomeLayout";
 }
 
-<body>
+<body> <br/> <br/> <br /> <br /> <br />
 
 <div class="container" align="center">
     
@@ -14,13 +15,19 @@
         <form method="post">
 
             <div class="form-group">
-                <label asp-for="UserName" for="brugernavn">Brugernavn</label>
-                <input type="text" id="brugernavn" name="Brugernavn"/><br/><br/>
+                <label for="brugernavn">Brugernavn</label>
+                <input type="text" asp-for="User.Username" placeholder="Brugernavn" /><br /><br />
 
-                <label asp-for="Password" for="password">Password</label>
-                <input type="text" id="adgangskode" name="Adgangskode"/><br/><br/>
+                <label for="password">Password</label>
+                <input type="password" asp-for="User.Password" placeholder="Adgangskode" /><br /><br />
 
-                <input type="submit" value="Submit"/>
+                @if (@Model.ErrorMessage != "")
+                {
+                    <p style="color: red">@Model.ErrorMessage</p>
+                }
+
+                <input type="submit" value="Login" />
+
             </div>
 
         </form>

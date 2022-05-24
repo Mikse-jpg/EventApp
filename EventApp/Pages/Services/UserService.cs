@@ -12,6 +12,7 @@ namespace EventApp.Pages.Services
         private readonly List<User> _users;
         private const string connectionString = @"Server=tcp:frederik-nissen-zealand-server.database.windows.net,1433;Initial Catalog=SecondSemesterProject;Persist Security Info=False;User ID=fred145aAdmin;Password=Fred145a!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
+        
 
 
         public UserService()
@@ -48,7 +49,7 @@ namespace EventApp.Pages.Services
             return newUser;
         }
 
-        public User Delete(string txt)
+        public string Delete(User newEvent)
         {
             throw new NotImplementedException();
         }
@@ -92,6 +93,25 @@ namespace EventApp.Pages.Services
             throw new NotImplementedException();
         }
 
+        public bool Check(User check)
+        {
+            if (check == null)
+            {
+                return false;
+            }
+
+            foreach (var us in GetAll())
+            {
+                if (us.Username == check.Username && us.Password == check.Password)
+                {
+                    return true;
+                }
+            }
+
+
+            return false;
+        }
+
 
         private User ReadPerson(SqlDataReader reader)
         {
@@ -103,6 +123,11 @@ namespace EventApp.Pages.Services
 
 
             return h;
+        }
+
+        public User AddReservation(User addToEvent)
+        {
+            throw new NotImplementedException();
         }
     }
 }

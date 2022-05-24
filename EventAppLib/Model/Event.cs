@@ -17,7 +17,6 @@ namespace EventAppLib.Model
         private string _description;
         private int _reservations;
         private DateTime _date;
-        private static int NextID = 1;
 
         #endregion
 
@@ -50,13 +49,21 @@ namespace EventAppLib.Model
         public string Title
         {
             get => _title;
-            set => _title = value;
+            set
+            {
+                checkTitle(value);
+                _title = value;
+            }
         }
 
         public string Description
         {
             get => _description;
-            set => _description = value;
+            set
+            {
+                checkDescription(value);
+                _description = value;
+            }
         }
 
         public int Reservations
@@ -71,15 +78,25 @@ namespace EventAppLib.Model
             set => _date = value;
         }
 
-        public static int NextId
-        {
-            get => NextID;
-            set => NextID = value;
-        }
-
         #endregion
 
         #region Methods
+        private void checkTitle(string title)
+        {
+            if (title.Length < 3)
+            {
+                throw new ArgumentException($"Title must be at least 3 characters. Yours is: {title.Length}");
+            }
+        }
+
+        private void checkDescription(string description)
+        {
+            if (description.Length < 10)
+            {
+                throw new ArgumentException($"Description must be at least 10 characters. Yours is: {description.Length}");
+            }
+        }
+
 
         public override string ToString()
         {

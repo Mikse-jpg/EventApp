@@ -20,26 +20,21 @@ namespace EventApp.Pages.Event
         }
 
         [BindProperty]
-        public EventAppLib.Model.Event Event
-        {
-            get;
-            private set;
-        }
+        public EventAppLib.Model.Event Event { get; set; }
 
         public void OnGet(int id)
         {
             Event = _eventService.GetById(id);
         }
 
-        public void OnPost()
+        public IActionResult OnPost(EventAppLib.Model.Event events)
         {
-            _eventService.Create(Event);
-            
+            events.Id = Event.Id;
+
+            _eventService.AddReservation(Event);
+            return RedirectToPage("/Index");
+
         }
 
-        protected void AcceptClickedYes(object sender, EventArgs e)
-        {
-            var x = 1;
-        }
     }
 }

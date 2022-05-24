@@ -26,7 +26,8 @@
             <form method="post">
 
                 <label>Number om reservations:</label> <br />
-                <select class="form-control" asp-for="@Model.Event.Reservations">
+
+                <select class="form-control" asp-for="Event.Reservations">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -42,7 +43,11 @@
                     <option>13</option>
                     <option>14</option>
                     <option>15</option>
-                </select>
+                </select> <br /> <br />
+
+                <input type="text" asp-for="Event.Id" placeholder="@Model.Event.Id" style="text-align: center" /> <br /> <br />
+
+
 
                 <button class="events-button" type="submit">Accept</button>
 

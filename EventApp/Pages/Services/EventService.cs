@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using EventAppLib.Model;
@@ -18,12 +19,17 @@ namespace EventApp.Pages.Services
 
         }
 
+        public bool Check(EventAppLib.Model.Event check)
+        {
+            throw new NotImplementedException();
+        }
+
         public EventAppLib.Model.Event Create(EventAppLib.Model.Event newEvent)
         {
 
             EventAppLib.Model.Event createEvent = newEvent;
 
-            string sql = "insert into Event values('" + newEvent.Id + "', '" + newEvent.Title + "', '" + newEvent.Description + "', '" + newEvent.Date + "', '" + newEvent.Reservations + "')";
+            string sql = $"insert into [Event] values('" + newEvent.Id + "', '" + newEvent.Title + "', '" + newEvent.Description + "', convert(datetime, '" + newEvent.Date + "', 105), '" + newEvent.Reservations + "')";
 
             //opret forbindelse til dB
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -49,9 +55,66 @@ namespace EventApp.Pages.Services
 
         }
 
-        public EventAppLib.Model.Event Delete(string txt)
+        public EventAppLib.Model.Event AddReservation(EventAppLib.Model.Event newEvent)
         {
-            throw new NotImplementedException();
+
+            EventAppLib.Model.Event createEvent = newEvent;
+
+            string sql = $"update [Event] set Reservations=" + newEvent.Reservations + " + Reservations where Id='" + newEvent.Id + "'";
+
+            //opret forbindelse til dB
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //åbner forbindelse
+                connection.Open();
+
+                //opretter sql query
+                SqlCommand cmd = new SqlCommand(sql, connection);
+
+                //altid ved select
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                //læser alle rækker
+                while (reader.Read())
+                {
+                    EventAppLib.Model.Event owner = ReadEvent(reader);
+
+                }
+            }
+
+            return newEvent;
+
+        }
+
+        public string Delete(EventAppLib.Model.Event newEvent)
+        {
+
+            EventAppLib.Model.Event createEvent = newEvent;
+
+            //string sql = $"delete from [Event] where Id=" + newEvent.Id + "";
+            string sql = $"delete from [Event] where Id=" + newEvent.Id + "";
+
+            //opret forbindelse til dB
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //åbner forbindelse
+                connection.Open();
+
+                //opretter sql query
+                SqlCommand cmd = new SqlCommand(sql, connection);
+
+                //altid ved select
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                //læser alle rækker
+                while (reader.Read())
+                {
+                    EventAppLib.Model.Event owner = ReadEvent(reader);
+
+                }
+            }
+
+            return "deleted";
         }
 
         public List<EventAppLib.Model.Event> GetAll()

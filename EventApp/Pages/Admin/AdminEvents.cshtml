@@ -17,36 +17,39 @@
 </div>
 
 <div>
+    
+    <table class="table-bordered" style="text-align: center; width: -webkit-fill-available; ">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>ID</th>
+            <th></th>
+        </tr>
+        </thead>
+        
+        <tbody>
         @foreach (Event e in @Model.Events)
         {
-            <div class="events-box">
-                <div class="events-header">
-                    <a>@e.Title</a>
-                </div>
+            <tr>
+                <td>@e.Title</td>
+                <td>@e.Description</td>
+                <td>@e.Id</td>
+                
+                <td>
+                    <form method="post">
+                        
 
-                <div class="events-body">
-                    <a>@e.Description</a>
-                </div>
+                        <input type="submit" class="fa fa-trash" asp-route-id="@e.Id"/>
+                    </form>
 
-                <div class="events-footer">
-                    <div>
-
-                        <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@e.Id">
-                            <i class="fa fa-trash"></i>
-                        </a>
-
-                        <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@e.Id">
-                            <i class="fa fa-create"></i>
-                        </a>
-
-
-                    </div>
-
-                </div>
-
-            </div>
+                </td>
+            </tr>
         }
+        </tbody>
 
-    </div>
+    </table>
+
+</div>
 
 </body>

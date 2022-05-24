@@ -27,8 +27,10 @@ namespace EventApp.Pages.Admin
             Events = _events.GetAll();
         }
 
-        public void OnPost()
+        public void OnPost(EventAppLib.Model.Event events)
         {
+            _events.Delete(events);
+
 
         }
     }

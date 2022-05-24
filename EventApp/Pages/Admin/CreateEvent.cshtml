@@ -5,7 +5,40 @@
 }
 
 <body>
+    
+<div class="container" style="align-content: center">
+    
+    <div class="card mb-2" style="width: 50rem">
+        <div class="card-header" align="center">
+            <h1>Create new event</h1>
 
-<h1>Create Event</h1>
+        </div>
+        
+        <div class="card-body" style="align-self: center; text-align: center">
+            
+            <form method="post">
+
+                <input type="text" asp-for="Event.Title" placeholder="Title" /> <br /> <br />
+
+                <input type="text" asp-for="Event.Description " placeholder="Description" /> <br /> <br />
+
+                <input type="datetime-local" asp-for="Event.Date " placeholder="Date" /> <br /> <br />
+
+                <button class="events-button" type="submit">Create Event</button>
+
+
+            </form>
+            
+
+        </div>
+        
+        <div class="card-footer">
+            
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
