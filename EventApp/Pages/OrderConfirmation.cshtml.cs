@@ -11,10 +11,9 @@ namespace EventApp.Pages
 {
     public class OrderConfirmationModel : PageModel
     {
-        private IService<User> _user;
-        private LoggedInUser _loggedInUser;
         private IService<EventAppLib.Model.Event> _eventService;
         private IService<Participants> _participantsService;
+        private IService<EventSupplement> _eventSupplementService;
 
         [BindProperty]
         public EventAppLib.Model.Event Event
@@ -29,19 +28,27 @@ namespace EventApp.Pages
         [BindProperty]
         public LoggedInUser LoggedInUser { get; set; }
 
-        public OrderConfirmationModel(IService<User> user, LoggedInUser loggedInUser, IService<EventAppLib.Model.Event> eventService, IService<Participants> participantsService)
+        [BindProperty]
+        public EventSupplement EventSupplement { get; set; }
+
+        public OrderConfirmationModel(LoggedInUser user, IService<EventAppLib.Model.Event> eventService, IService<Participants> participantsService, IService<EventSupplement> eventSupplementService)
         {
-            _user = user;
-            _loggedInUser = loggedInUser;
+            
+            LoggedInUser = user;
             _eventService = eventService;
             _participantsService = participantsService;
+            _eventSupplementService = eventSupplementService;
         }
 
         public void OnGet(int id)
         {
+            
+
             Event = _eventService.GetById(id);
             Participants = _participantsService.GetById(id);
-            
+
+            EventSupplement = _eventSupplementService.GetById(LoggedInUser.Id);
+
         }
     }
 }

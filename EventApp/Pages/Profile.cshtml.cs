@@ -13,6 +13,7 @@ namespace EventApp.Pages
     {
         private User _user;
         private EventAppLib.Model.Event _event;
+        private IService<EventSupplement> _eventSupplement;
 
         [BindProperty]
         public User User { get; set; }

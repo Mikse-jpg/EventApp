@@ -55,7 +55,7 @@ namespace EventApp.Pages
             }
 
             loggedinuser.LoggedIn = true;
-            _loggedInUser.Id = user.Id;
+            _loggedInUser.Id = User.Id;
             _loggedInUser.Username = user.Username;
             _loggedInUser.Roletype = user.Roletype;
 

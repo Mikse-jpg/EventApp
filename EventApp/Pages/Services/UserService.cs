@@ -137,5 +137,10 @@ namespace EventApp.Pages.Services
         {
             throw new NotImplementedException();
         }
+
+        public List<User> GetAllSorted()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

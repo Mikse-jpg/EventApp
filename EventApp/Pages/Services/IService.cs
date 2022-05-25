@@ -11,6 +11,8 @@ namespace EventApp.Pages.Services
 
         List<T> GetAll();
 
+        List<T> GetAllSorted();
+
         T GetById(int id);
 
         T Create(T newEvent);

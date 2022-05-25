@@ -1,4 +1,6 @@
 ﻿@page "{id:int}"
+@using EventAppLib.Model
+@using EventApp.Pages.Services
 @model EventApp.Pages.OrderConfirmationModel
 @{
     ViewData["Title"] = "Login";
@@ -14,7 +16,7 @@
     </div>
 
     <div class="card-body mb-2" style="text-align: center">
-        <p>User: @Model.Participants.UserId, have reserved @Model.Participants.Reservations people for this event.</p> <br />
+        <p>User: (@Model.LoggedInUser.Id) @Model.LoggedInUser.Username, have reserved @Model.Participants.Reservations people for this event.</p> <br />
         @if (@Model.Participants.Parking == 1)
         {
             <p>You have also booked a parking spot.</p> <br />
@@ -25,7 +27,16 @@
         }
 
         <p>The date for this event is: @Model.Event.Date</p>
-        
+
+        @if (@Model.EventSupplement.UserId == @Model.LoggedInUser.Id)
+        {
+    <p>You have ordered: @Model.EventSupplement.Menu combined with @Model.EventSupplement.Champagne Champagne menu.</p>
+            
+        }
+
+
+
+
     </div>
     
     <div class="card-footer mb-2" style="text-align: center">

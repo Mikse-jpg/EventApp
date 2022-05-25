@@ -29,14 +29,29 @@ namespace EventApp.Pages.Services
 
         public bool Check(EventSupplement check)
         {
-            throw new NotImplementedException();
+            if (check == null)
+            {
+                return false;
+            }
+
+            foreach (var us in GetAll())
+            {
+                if (us.UserId == check.UserId)
+                {
+                    check.UserId = us.UserId;
+                    return true;
+                }
+            }
+
+
+            return false;
         }
 
         public EventSupplement Create(EventSupplement newEvent)
         {
             EventSupplement createEvent = newEvent;
 
-            string sql = $"insert into [Event] values('" + newEvent.UserId + "', '" + newEvent.Champagne + "', '" + newEvent.Menu + "')";
+            string sql = $"insert into [Event_Supplement] values('" + newEvent.UserId + "', '" + newEvent.Champagne + "', '" + newEvent.Menu + "')";
 
             //opret forbindelse til dB
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -93,6 +108,11 @@ namespace EventApp.Pages.Services
             }
 
             return events;
+        }
+
+        public List<EventSupplement> GetAllSorted()
+        {
+            throw new NotImplementedException();
         }
 
         public EventSupplement GetById(int id)

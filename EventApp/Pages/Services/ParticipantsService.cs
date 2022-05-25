@@ -99,6 +99,11 @@ namespace EventApp.Pages.Services
             return participants;
         }
 
+        public List<Participants> GetAllSorted()
+        {
+            throw new NotImplementedException();
+        }
+
         public Participants GetById(int id)
         {
             string sql = "select * from Participants where Event_Id=" + id;

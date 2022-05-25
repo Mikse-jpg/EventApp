@@ -5,6 +5,31 @@
 }
 
 <body>
+    <header>
+        <h1 style="text-align: center">Program for June 2th, 2022</h1>
+    </header>
 
+    <table class="table-bordered" style="text-align: center; display: table; background-color: floralwhite; width: -webkit-fill-available; ">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+            
+        <tbody>
+            @foreach (EventAppLib.Model.Event e in @Model.Events)
+            {
+                <tr>
+                    <td>@e.Title</td>
+                    <td>@e.Description</td>
+                    <td>@e.Date</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
 
 </body>

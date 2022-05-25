@@ -182,6 +182,34 @@ namespace EventApp.Pages.Services
 
         }
 
+        public List<EventAppLib.Model.Event> GetAllSorted()
+        {
+            List<EventAppLib.Model.Event> events = new List<EventAppLib.Model.Event>();
+
+            string sql = "select * from [Event] order by Date ASC";
+
+            //opret forbindelse til dB
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //åbner forbindelse
+                connection.Open();
+
+                //opretter sql query
+                SqlCommand cmd = new SqlCommand(sql, connection);
+
+                //altid ved select
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                //læser alle rækker
+                while (reader.Read())
+                {
+                    EventAppLib.Model.Event owner = ReadEvent(reader);
+                    events.Add(owner);
+                }
+            }
+
+            return events;
+        }
 
         public EventAppLib.Model.Event Modify(EventAppLib.Model.Event modifiedUserStory, string txt)
         {

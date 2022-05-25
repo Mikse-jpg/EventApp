@@ -37,7 +37,7 @@ namespace EventApp.Pages
 
         public IActionResult OnGet(int id)
         {
-            if (LoggedInUser.LoggedIn)
+            if (!LoggedInUser.LoggedIn)
             {
                 LoggedInUser.LoggedIn = false;
                 return RedirectToPage("/Login");
@@ -50,10 +50,13 @@ namespace EventApp.Pages
 
         public IActionResult OnPost(EventSupplement eventSupplement)
         {
+
+            eventSupplement.UserId = LoggedInUser.Id;
+
             _eventSupplementService.Create(eventSupplement);
 
 
-            return Page();
+            return RedirectToPage("/Profile");
         }
     }
 }
