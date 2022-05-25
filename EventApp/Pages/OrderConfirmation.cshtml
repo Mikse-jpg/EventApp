@@ -1,0 +1,36 @@
+﻿@page "{id:int}"
+@model EventApp.Pages.OrderConfirmationModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<body>
+<div class="card mb-2" style="text-align: center">
+    <div class="card-header p-2">
+        <h5 class="card-title">
+            Order confirmation for: @Model.Event.Title (@Model.Event.Id)
+        </h5>
+        
+    </div>
+
+    <div class="card-body mb-2" style="text-align: center">
+        <p>User: @Model.Participants.UserId, have reserved @Model.Participants.Reservations people for this event.</p> <br />
+        @if (@Model.Participants.Parking == 1)
+        {
+            <p>You have also booked a parking spot.</p> <br />
+        }
+        else
+        {
+            <p>You haven't reserved a parking spot.</p> <br />
+        }
+
+        <p>The date for this event is: @Model.Event.Date</p>
+        
+    </div>
+    
+    <div class="card-footer mb-2" style="text-align: center">
+        <button class="ml-auto" onClick="window.print()">Print this page</button>
+    </div>
+</div>
+
+</body>

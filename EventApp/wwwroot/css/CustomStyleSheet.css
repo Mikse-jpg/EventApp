@@ -117,3 +117,19 @@ nav a {
     color: black;
 }
 
+.custom-box {
+    text-align: center;
+    height: 50rem;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Basier circle",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: black;
+    background-color: white;
+    border: 5px solid black;
+}
+

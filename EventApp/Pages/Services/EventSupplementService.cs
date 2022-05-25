@@ -7,25 +7,36 @@ using Microsoft.Data.SqlClient;
 
 namespace EventApp.Pages.Services
 {
-    public class ParticipantsService : IService<Participants>
+    public class EventSupplementService : IService<EventSupplement>
     {
-
         private const string connectionString =
             @"Server=tcp:frederik-nissen-zealand-server.database.windows.net,1433;Initial Catalog=SecondSemesterProject;Persist Security Info=False;User ID=fred145aAdmin;Password=Fred145a!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
-
-        public ParticipantsService()
+        public EventSupplementService()
         {
             
         }
 
-
-
-        public Participants AddParticipation(Participants addToEvent)
+        public EventSupplement AddParticipation(EventSupplement addToEvent)
         {
-            Participants createEvent = addToEvent;
+            throw new NotImplementedException();
+        }
 
-            string sql = $"insert into [Participants] values('" + addToEvent.UserId + "', '" + addToEvent.EventId + "', '" + addToEvent.Parking + "', '" + addToEvent.Reservations + "')";
+        public EventSupplement AddReservation(EventSupplement addToEvent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Check(EventSupplement check)
+        {
+            throw new NotImplementedException();
+        }
+
+        public EventSupplement Create(EventSupplement newEvent)
+        {
+            EventSupplement createEvent = newEvent;
+
+            string sql = $"insert into [Event] values('" + newEvent.UserId + "', '" + newEvent.Champagne + "', '" + newEvent.Menu + "')";
 
             //opret forbindelse til dB
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -42,39 +53,24 @@ namespace EventApp.Pages.Services
                 //læser alle rækker
                 while (reader.Read())
                 {
-                    Participants owner = ReadParticipants(reader);
+                    EventSupplement owner = ReadEventSupplement(reader);
 
                 }
             }
 
-            return addToEvent;
+            return newEvent;
         }
 
-        public Participants AddReservation(Participants addToEvent)
+        public string Delete(EventSupplement newEvent)
         {
             throw new NotImplementedException();
         }
 
-        public bool Check(Participants check)
+        public List<EventSupplement> GetAll()
         {
-            throw new NotImplementedException();
-        }
+            List<EventSupplement> events = new List<EventSupplement>();
 
-        public Participants Create(Participants newEvent)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Delete(Participants newEvent)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Participants> GetAll()
-        {
-            List<Participants> participants = new List<Participants>();
-
-            string sql = "select * from Participants";
+            string sql = "select * from Event_Supplement";
 
             //opret forbindelse til dB
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -91,17 +87,17 @@ namespace EventApp.Pages.Services
                 //læser alle rækker
                 while (reader.Read())
                 {
-                    Participants owner = ReadParticipants(reader);
-                    participants.Add(owner);
+                    EventSupplement owner = ReadEventSupplement(reader);
+                    events.Add(owner);
                 }
             }
 
-            return participants;
+            return events;
         }
 
-        public Participants GetById(int id)
+        public EventSupplement GetById(int id)
         {
-            string sql = "select * from Participants where Event_Id=" + id;
+            string sql = "select * from Event_Supplement where User_Id=" + id;
 
             //opret forbindelse til dB
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -121,29 +117,29 @@ namespace EventApp.Pages.Services
                 //læser alle rækker
                 while (reader.Read())
                 {
-                    Participants owner = ReadParticipants(reader);
+                    EventSupplement owner = ReadEventSupplement(reader);
                     return owner;
                 }
             }
 
             return null;
-
         }
 
-        public Participants Modify(Participants modifiedUserStory, string txt)
+        public EventSupplement Modify(EventSupplement modifiedUserStory, string txt)
         {
             throw new NotImplementedException();
         }
-        private Participants ReadParticipants(SqlDataReader reader)
+
+        private EventSupplement ReadEventSupplement(SqlDataReader reader)
         {
-            Participants owner = new Participants();
+            EventSupplement owner = new EventSupplement();
 
             owner.UserId = reader.GetInt32(0);
-            owner.EventId = reader.GetInt32(1);
-            owner.Parking = reader.GetInt32(2);
-            owner.Reservations = reader.GetInt32(3);
+            owner.Champagne = reader.GetInt32(1);
+            owner.Menu = reader.GetString(2);
 
             return owner;
         }
+
     }
 }

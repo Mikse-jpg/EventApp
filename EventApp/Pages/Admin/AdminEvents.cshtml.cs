@@ -31,6 +31,12 @@ namespace EventApp.Pages.Admin
             {
                 return RedirectToPage("/Login");
             }
+
+            if (LoggedInUser.Roletype == 1)
+            {
+                return RedirectToPage("/Index");
+            }
+
             Events = _events.GetAll();
             return Page();
         }

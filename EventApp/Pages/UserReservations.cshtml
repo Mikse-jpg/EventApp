@@ -15,20 +15,24 @@
         <a class="navbar-brand" href="/Profile">@Model.LoggedInUser.Username</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav flex-grow-1">
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-page="/Profile">Posts</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-page="/UserReservations">My reservations</a>
                 </li>
-                    
+
                 @if (@Model.LoggedInUser.Roletype == 2)
                 {
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-page="/Admin/Admin">Admin</a>
                     </li>
                 }
-                    
+
+                <li class="nav-item ml-auto">
+                    <form method="post">
+                        <input class="events-button" type="submit" value="Logout"/>
+                    </form>
+                </li>
+
             </ul>
         </div>
     </nav>
@@ -60,11 +64,16 @@
                 }
                 else
                 {
-                <td>
-                    No
-                </td>
+                    <td>
+                        No
+                    </td>
                 }
                 <td>@e.Reservations</td>
+
+                <td>
+                    <a type="button" class="btn btn-danger" asp-page="/OrderConfirmation" asp-route-id="@e.EventId">Order confirmation</a>
+                </td>
+
 
             </tr>
         }

@@ -14,9 +14,7 @@
             <a class="navbar-brand" href="/Profile">@Model.LoggedInUser.Username</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-page="/Profile">Posts</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" asp-page="/UserReservations" asp-route-id="@Model.LoggedInUser.Id">My reservations</a>
                     </li>
@@ -28,8 +26,15 @@
                         </li>
                     }
 
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/EventSupplement" asp-route-id="@Model.LoggedInUser.Id">Order supplements</a>
+                    </li>
+                    
+
                     <li class="nav-item ml-auto">
-                        <a class="nav-link" asp-area="" asp-page="/">Logout</a>
+                        <form method="post">
+                            <input class="events-button" type="submit" value="Logout" />
+                        </form>
                     </li>
 
                 </ul>

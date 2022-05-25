@@ -6,6 +6,7 @@ using EventApp.Pages.Services;
 using EventAppLib.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace EventApp.Pages
 {
@@ -13,14 +14,21 @@ namespace EventApp.Pages
     {
         private IService<User> _user;
 
+        private readonly ILogger<IndexModel> _logger;
+        private LoggedInUser _loggedInUser;
+
+        public LoggedInUser loggedinuser { get => _loggedInUser; }
+
         [BindProperty]
         public User User { get; set; }
 
         public string ErrorMessage;
 
-        public CreateUserModel(IService<User> user)
+        public CreateUserModel(ILogger<IndexModel> logger, IService<User> user, LoggedInUser loggedInUser)
         {
             _user = user;
+            _logger = logger;
+            _loggedInUser = loggedInUser;
         }
 
         public IActionResult OnGet()
@@ -45,6 +53,11 @@ namespace EventApp.Pages
             {
                 User.Id = _user.GetAll().Count + 1;
             }
+
+            loggedinuser.LoggedIn = true;
+            _loggedInUser.Id = user.Id;
+            _loggedInUser.Username = user.Username;
+            _loggedInUser.Roletype = user.Roletype;
 
             _user.Create(User);
             return RedirectToPage("/Index");

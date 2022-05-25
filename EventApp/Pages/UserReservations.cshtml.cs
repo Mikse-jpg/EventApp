@@ -45,5 +45,16 @@ namespace EventApp.Pages
 
             return Page();
         }
+
+        public IActionResult OnPost()
+        {
+            if (LoggedInUser.LoggedIn)
+            {
+                LoggedInUser.LoggedIn = false;
+                return RedirectToPage("/Login");
+            }
+
+            return Page();
+        }
     }
 }
