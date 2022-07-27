@@ -10,7 +10,7 @@ namespace EventApp.Pages.Services
     public class EventSupplementService : IService<EventSupplement>
     {
         private const string connectionString =
-            @"Server=tcp:frederik-nissen-zealand-server.database.windows.net,1433;Initial Catalog=SecondSemesterProject;Persist Security Info=False;User ID=fred145aAdmin;Password=Fred145a!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            @"";
 
         public EventSupplementService()
         {
